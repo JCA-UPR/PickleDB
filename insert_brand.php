@@ -13,7 +13,7 @@ $ceo = $_POST['ceo'];
     $servername = "localhost:3306";
     $username = "juliansp";
     $password = "julian012803";
-    $dbname = "mS224DB_juliansp";
+    $dbname = "S224DB_juliansp";
 
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
