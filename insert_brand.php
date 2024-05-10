@@ -42,8 +42,6 @@ $ceo = $_POST['ceo'];
       } else {
         echo "0 results";
       }
-      $conn->close();
-
-    $conn->close();
+      mysqli_close($conn);
 
 ?>
