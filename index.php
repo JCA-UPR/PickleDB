@@ -58,27 +58,31 @@
             <th>CEO</th>
         </tr>
         <?php
-        // Open SQLite database connection
-        $db = new SQLite3('pickle.db');
-
-        // Query to select all rows from 'brands' table
-        $query = "SELECT * FROM brands";
-
-        // Execute the query
-        $result = $db->query($query);
-
-        // Loop through the results and display each row
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-            echo "<tr>";
-            echo "<td>" . $row['name'] . "</td>";
-            echo "<td>" . $row['estYear'] . "</td>";
-            echo "<td>" . $row['based'] . "</td>";
-            echo "<td>" . $row['CEO'] . "</td>";
-            echo "</tr>";
+        $servername = "localhost:3306";
+        $username = "juliansp";
+        $password = "julian012803";
+        $dbname = "mS224DB_juliansp";
+        
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
         }
-
-        // Close database connection
-        $db->close();
+        
+        $sql = "SELECT * FROM brands";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+          // output data of each row
+          while($row = $result->fetch_assoc()) {
+            echo "name: " . $row["name"]. " - established year: " . $row["est_year"]. "  country: " . $row["country"]. " CEO:". $row["CEO"] . "<br>";
+          }
+        } else {
+          echo "0 results";
+        }
+        $conn->close();
+    
         ?>
     </table>
     </div>
