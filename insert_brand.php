@@ -2,37 +2,48 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// SQLite database file path
-$db_path = 'pickle.db';
-
 // Get form data
 $name = $_POST['name'];
 $estYear = $_POST['estYear'];
 $country = $_POST['country'];
 $ceo = $_POST['ceo'];
 
-try {
+
     // Connect to the SQLite database
-    $db = new mySQL($db_path);
+    $servername = "localhost:3306";
+    $username = "juliansp";
+    $password = "julian012803";
+    $dbname = "mS224DB_juliansp";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+    }
+
 
     // Prepare SQL statement to insert data into brands table
-    $stmt = $db->prepare("INSERT INTO brands (name, estYear, based, CEO) VALUES (:name, :estYear, :country, :ceo)");
 
-    // Bind parameters
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':estYear', $estYear);
-    $stmt->bindParam(':based', $country);
-    $stmt->bindParam(':ceo', $ceo);
 
-    // Execute the statement
-    $stmt->execute();
+    $sql = "INSERT INTO brands (name, est_year, country, CEO)
+    VALUES (" . $name . "," . $estYear . "," . $country . "," . $ceo .")";
 
-    echo "Brand information inserted successfully.";
-} catch(Exception $e) {
-    // Print error message if something goes wrong
-    echo "Error: " . $e->getMessage();
-}
+    if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+    } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+          echo "name: " . $row["name"]. " - CEO: " . $row["CEO"].  "<br>";
+        }
+      } else {
+        echo "0 results";
+      }
+      $conn->close();
 
-// Close the database connection
-$db->close();
+    $conn->close();
+
 ?>
