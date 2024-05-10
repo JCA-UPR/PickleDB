@@ -27,13 +27,22 @@ $ceo = $_POST['ceo'];
 
 
     $sql = "INSERT INTO brands (name, est_year, country, CEO)
-    VALUES (" + $name + "," + $estYear + "," + $country + "," + $ceo +")";
+    VALUES (" . $name . "," . $estYear . "," . $country . "," . $ceo .")";
 
     if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
     } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+          echo "name: " . $row["name"]. " - CEO: " . $row["CEO"].  "<br>";
+        }
+      } else {
+        echo "0 results";
+      }
+      $conn->close();
 
     $conn->close();
 
