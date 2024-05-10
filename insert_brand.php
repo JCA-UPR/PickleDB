@@ -28,7 +28,7 @@ $ceo = $_POST['ceo'];
 
 
     $sql = "INSERT INTO brands (name, est_year, country, CEO)
-    VALUES (" . $name . "," . $estYear . "," . $country . "," . $ceo .")";
+    VALUES (" . $name . "," . $estYear . "," . $country . "," . $ceo . ")";
 
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
