@@ -27,7 +27,7 @@ $ceo = $_POST['ceo'];
     // Prepare SQL statement to insert data into brands table
 
 
-    $sql = "INSERT INTO brands (name, est_year, country, CEO)
+    $sql = "INSERT INTO brands (brand_name, est_year, country, CEO)
     VALUES (" . $name . "," . $estYear . "," . $country . "," . $ceo . ")";
 
 if (mysqli_query($conn, $sql)) {
