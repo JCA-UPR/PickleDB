@@ -76,7 +76,7 @@
         if ($result->num_rows > 0) {
           // output data of each row
           while($row = $result->fetch_assoc()) {
-            echo "name: " . $row["name"]. " - established year: " . $row["est_year"]. "  country: " . $row["country"]. " CEO:". $row["CEO"] . "<br>";
+            echo "name: " . $row["name"]. " - established year: " . $row["est_year"]. "  country: " . $row["country"]. " CEO:". $row["CEO"] ."<br>";
           }
         } else {
           echo "0 results";
