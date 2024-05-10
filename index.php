@@ -29,29 +29,10 @@
 
     </div>
     <div id="response"></div>
-    <script>
-        function insertBrand() {
-            var formData = new FormData(document.getElementById("brandForm"));
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "insertBrand.php", true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        document.getElementById("response").innerHTML = xhr.responseText;
-                        // Clear the form after successful submission if needed
-                        document.getElementById("brandForm").reset();
-                    } else {
-                        console.error('Error:', xhr.status);
-                    }
-                }
-            };
-            xhr.send(formData);
-        }
-    </script>
+
     <div>
     <h2>Brands Table</h2>
- 
-        <?php
+    <?php
         $servername = "localhost:3306";
         $username = "juliansp";
         $password = "julian012803";
@@ -62,8 +43,8 @@
         // Check connection
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
-          }
-          
+        }
+        
         
         $sql = "SELECT * FROM brands";
         $result = mysqli_query($conn, $sql);
@@ -73,15 +54,15 @@
             echo "<table>";
             echo "<tr><th>Name</th><th>Established Year</th><th>Country</th><th>CEO</th></tr>";
             while($row = mysqli_fetch_assoc($result)) {
-              echo  "tr><td>" . $row["brand_name"] ."</td><td>" . $row["est_year"]. "</td><td>" . $row["country"]. "</td><td>" . $row["CEO"] ."</td></tr>";
+            echo  "<tr><td>" . $row["brand_name"] ."</td><td>" . $row["est_year"]. "</td><td>" . $row["country"]. "</td><td>" . $row["CEO"] ."</td></tr>";
             }
             echo "</table>";
-          } else {
+        } else {
             echo "0 results";
-          }
+        }
         mysqli_close($conn);
-    
-        ?>
+
+    ?>
     </table>
     </div>
         </div>
@@ -104,25 +85,7 @@
 
     </div>
     <div id="series_response"></div>
-    <script>
-        function insertBrand() {
-            var formData = new FormData(document.getElementById("brandForm"));
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "insert_series.php", true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        document.getElementById("series_response").innerHTML = xhr.responseText;
-                        // Clear the form after successful submission if needed
-                        document.getElementById("brandForm").reset();
-                    } else {
-                        console.error('Error:', xhr.status);
-                    }
-                }
-            };
-            xhr.send(formData);
-        }
-    </script>
+
     <div>
     <h2>Series Table</h2>
     
@@ -148,7 +111,7 @@
             echo "<table>";
             echo "<tr><th>ID</th><th>Series Name</th><th>Description</th><th>Brand</th></tr>";
             while($row = mysqli_fetch_assoc($result)) {
-              echo  "tr><td>" . $row["id"] ."</td><td>" . $row["series_name"]. "</td><td>" . $row["description"]. "</td><td>" . $row["brand_name"] ."</td></tr>";
+              echo  "<tr><td>" . $row["id"] ."</td><td>" . $row["series_name"]. "</td><td>" . $row["description"]. "</td><td>" . $row["brand_name"] ."</td></tr>";
             }
             echo "</table>";
           } else {
@@ -220,24 +183,232 @@
         ?>
     </div>  
 
-    <script>
-        function insertPaddle() {
-            var formData = new FormData(document.getElementById("paddleForm"));
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "insert_paddle.php", true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        document.getElementById("response").innerHTML = xhr.responseText;
-                        // Clear the form after successful submission if needed
-                        document.getElementById("paddleForm").reset();
-                    } else {
-                        console.error('Error:', xhr.status);
-                    }
-                }
-            };
-            xhr.send(formData);
+
+
+    <!--  League info entry -->
+    <div>
+        <h2>Enter League Information</h2>
+        <form id="leagueForm" action="insert_league.php" method="post">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="league_description">Description:</label>
+            <input type="text" id="league_description" name="league_description"><br><br>
+
+            <label for="Country">Country:</label>
+            <input type="text" id="Country" name="Country"><br><br>
+
+            <label for="Leader">Leader:</label>
+            <input type="text" id="leader" name="leader"><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="response"></div>
+    
+    <!-- Visualize League table -->
+    <div>
+        <h2>League Table</h2>
+        <?php
+        $servername = "localhost:3306";
+        $username = "juliansp";
+        $password = "julian012803";
+        $dbname = "S224DB_juliansp";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
         }
-    </script>
+        
+        $sql = "SELECT * FROM league";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            echo "<table>";
+            echo "<tr><th>Name</th><th>Description</th><th>Country</th><th>Leader</th>";
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["description"] . "</td><td>" . $row["country"];
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+        mysqli_close($conn);
+        ?>
+    </div>  
+
+
+    <!-- Materials info entry -->
+ 
+    <div>
+        <h2>Enter Material Information</h2>
+        <form id="materialForm" action="insert_material.php" method="post">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="distibuiter_id">Distribuiter ID:</label>
+            <input type="text" id="distibuiter_id" name="distibuiter_id"><br><br>
+
+            <label for="Quality">Quality:</label>
+            <input type="text" id="Quality" name="Quality"><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="response"></div>
+    
+    <!-- Visualize Material table -->
+    <div>
+        <h2>Material Table</h2>
+        <?php
+        $servername = "localhost:3306";
+        $username = "juliansp";
+        $password = "julian012803";
+        $dbname = "S224DB_juliansp";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        
+        $sql = "SELECT * FROM materials";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            echo "<table>";
+            echo "<tr><th>ID</th><th>Name</th><th>Distribuiter ID</th><th>Quality</th>";
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["distribuiter_id"] . "</td><td>" . $row["quality"];
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+        mysqli_close($conn);
+        ?>
+    </div> 
+
+    <!-- material_distributor -->
+ 
+    <div>
+        <h2>Enter Material Distributor Information</h2>
+        <form id="material_distributorForm" action="insert_material_distributor.php" method="post">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country"><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="response"></div>
+    
+    <!-- Visualize Material Distributor table -->
+    <div>
+        <h2>Material Distributor Table</h2>
+        <?php
+        $servername = "localhost:3306";
+        $username = "juliansp";
+        $password = "julian012803";
+        $dbname = "S224DB_juliansp";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        
+        $sql = "SELECT * FROM material_dist";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            echo "<table>";
+            echo "<tr><th>ID</th><th>Name</th><th>Country</th>";
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["country"];
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+        mysqli_close($conn);
+        ?>
+    </div> 
+
+    <!-- PLAYERS -->
+    <div>
+        <h2>Enter Player Information</h2>
+        <form id="playerForm" action="insert_player.php" method="post">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="ducpr">DUCPR:</label>
+            <input type="number" id="ducpr" name="ducpr"><br><br>
+
+            <label for="Country">Country:</label>
+            <input type="text" id="Country" name="Country"><br><br>
+
+            <label for="main_paddle">Main Paddle:</label>
+            <input type="text" id="main_paddle" name="main_paddle"><br><br>
+
+            <label for="league_id">League ID:</label>
+            <input>type="number"<br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="response"></div>
+    
+    <!-- Visualize League table -->
+    <div>
+        <h2>League Table</h2>
+        <?php
+        $servername = "localhost:3306";
+        $username = "juliansp";
+        $password = "julian012803";
+        $dbname = "S224DB_juliansp";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        
+        $sql = "SELECT * FROM league";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            echo "<table>";
+            echo "<tr><th>Name</th><th>Description</th><th>Country</th><th>Leader</th>";
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["description"] . "</td><td>" . $row["country"];
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+        mysqli_close($conn);
+        ?>
+    </div>  
+
 </body>
 </html>
