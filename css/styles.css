@@ -1,0 +1,148 @@
+/* Body Styles */
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Dark text color */
+    margin: 0;
+    padding: 0;
+    background-image: url(pickRick.jpeg); /* Replace 'path/to/your/image.jpg' with your image path */
+    background-size: cover; /* Cover the entire viewport */
+    background-repeat: repeat; /* No repeating of the image */
+    background-position: center; /* Center the image */
+}
+
+/* Rest of your CSS code */
+
+
+/* Header Styles */
+header {
+    background-color: #4a8f4e; /* Dark green header */
+    color: #fff; /* White text color */
+    padding: 1em;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #35693d; /* Darker green navigation bar */
+    padding: 0.5em;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 1em;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.3em 0.5em;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #5eaa66; /* Light green hover color */
+}
+
+/* Main Content Styles */
+main {
+    padding: 1em;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4a8f4e; /* Dark green footer */
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Button Styles */
+button {
+    background-color: #5eaa66; /* Light green button */
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4a8f4e; /* Dark green hover color */
+}
+
+/* Form Styles */
+form {
+    margin-top: 1em;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 50%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+table th,
+table td {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+table th {
+    background-color: #4a8f4e; /* Dark green table header */
+    color: #fff;
+}
+/* ... (previous CSS code) ... */
+
+.brands-section {
+    margin-top: 2em;
+}
+
+/* Form Styles */
+form {
+    margin-top: 1em;
+}
+.form-input {
+    width: 150px; /* You can adjust the width as needed */
+}
+.form-group {
+    margin-bottom: 1em;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 50%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
