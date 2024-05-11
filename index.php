@@ -50,14 +50,7 @@
     </script>
     <div>
     <h2>Brands Table</h2>
-    <table>
-        <tr>
-            
-            <th>Name</th>
-            <th>Established Year</th>
-            <th>Country Initials</th>
-            <th>CEO</th>
-        </tr>
+ 
         <?php
         $servername = "localhost:3306";
         $username = "juliansp";
@@ -77,9 +70,12 @@
         
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
+            echo "<table>";
+            echo "<tr><th>Name</th><th>Established Year</th><th>Country</th><th>CEO</th></tr>";
             while($row = mysqli_fetch_assoc($result)) {
-              echo "name: " . $row["brand_name"]. " - established year: " . $row["est_year"]. " country:" . $row["country"]. " CEO:".$row["CEO"] ."<br>";
+              echo  "tr><td>" . $row["brand_name"] ."</td><td>" . $row["est_year"]. "</td><td>" . $row["country"]. "</td><td>" . $row["CEO"] ."</td></tr>";
             }
+            echo "</table>";
           } else {
             echo "0 results";
           }
@@ -129,14 +125,7 @@
     </script>
     <div>
     <h2>Series Table</h2>
-    <table>
-        <tr>
-            
-            <th>Name</th>
-            <th>Established Year</th>
-            <th>Country Initials</th>
-            <th>CEO</th>
-        </tr>
+    
         <?php
         $servername = "localhost:3306";
         $username = "juliansp";
@@ -156,9 +145,12 @@
         
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
+            echo "<table>";
+            echo "<tr><th>ID</th><th>Series Name</th><th>Description</th><th>Brand</th></tr>";
             while($row = mysqli_fetch_assoc($result)) {
-              echo "id: " . $row["id"] . "name: " . $row["series_name"]. " -  description: " . $row["description"]. " brand:" . $row["brand_name"] ."<br>";
+              echo  "tr><td>" . $row["id"] ."</td><td>" . $row["series_name"]. "</td><td>" . $row["description"]. "</td><td>" . $row["brand_name"] ."</td></tr>";
             }
+            echo "</table>";
           } else {
             echo "0 results";
           }
@@ -166,7 +158,86 @@
     
         ?>
     </table>
+    <div>
+        <h2>Enter Paddle Information</h2>
+        <form id="paddleForm" action="insert_paddle.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="series_id">Series ID:</label>
+            <input type="number" id="series_id" name="series_id"><br><br>
+
+            <label for="retail_price">Retail Price:</label>
+            <input type="number" step="0.01" id="retail_price" name="retail_price"><br><br>
+
+            <label for="shape">Shape:</label>
+            <input type="text" id="shape" name="shape"><br><br>
+
+            <label for="thickness">Thickness:</label>
+            <input type="number" id="thickness" name="thickness"><br><br>
+
+            <label for="core">Core:</label>
+            <input type="text" id="core" name="core"><br><br>
+
+            <label for="face_material_id">Face Material ID:</label>
+            <input type="number" id="face_material_id" name="face_material_id"><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
     </div>
-        </div>
+    <div id="response"></div>
+
+    <div>
+        <h2>Paddle Table</h2>
+        <?php
+        $servername = "localhost:3306";
+        $username = "juliansp";
+        $password = "julian012803";
+        $dbname = "S224DB_juliansp";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        
+        $sql = "SELECT * FROM paddle";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            echo "<table>";
+            echo "<tr><th>Name</th><th>Series ID</th><th>Retail Price</th><th>Shape</th><th>Thickness</th><th>Core</th><th>Face Material ID</th></tr>";
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["name"] . "</td><td>" . $row["series_id"] . "</td><td>" . $row["retail_price"] . "</td><td>" . $row["shape"] . "</td><td>" . $row["thickness"] . "</td><td>" . $row["core"] . "</td><td>" . $row["face_material_id"] . "</td></tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+        mysqli_close($conn);
+        ?>
+    </div>  
+
+    <script>
+        function insertPaddle() {
+            var formData = new FormData(document.getElementById("paddleForm"));
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "insert_paddle.php", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        document.getElementById("response").innerHTML = xhr.responseText;
+                        // Clear the form after successful submission if needed
+                        document.getElementById("paddleForm").reset();
+                    } else {
+                        console.error('Error:', xhr.status);
+                    }
+                }
+            };
+            xhr.send(formData);
+        }
+    </script>
 </body>
 </html>
