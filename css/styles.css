@@ -104,21 +104,20 @@ textarea {
 
 /* Table Styles */
 table {
-    width: 100%;
     border-collapse: collapse;
-    margin-top: 1em;
+    width: 100%;
 }
-
-table th,
-table td {
-    padding: 0.5em;
-    border: 1px solid #ccc;
+th, td {
+    border: 1px solid #6D4C41; /* Dark brown border */
+    padding: 8px;
     text-align: left;
 }
-
-table th {
-    background-color: #4a8f4e; /* Dark green table header */
-    color: #fff;
+th {
+    background-color: #8D6E63; /* Dark brown header */
+    color: white; /* White text */
+}
+td {
+    background-color: #EFEBE9; /* Light brown body */
 }
 /* ... (previous CSS code) ... */
 
