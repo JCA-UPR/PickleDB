@@ -3,10 +3,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Get form data
-$name = $_POST["name"];
-$estYear = $_POST['estYear'];
-$country = $_POST["country"];
-$ceo = $_POST["ceo"];
+$series_name = $_POST["series_name"];
+$description = $_POST["description"];
+$brand = $_POST["brand_name"];
+
 
 
     // Connect to the SQLite database
@@ -27,8 +27,8 @@ $ceo = $_POST["ceo"];
     // Prepare SQL statement to insert data into brands table
 
 
-    $sql = "INSERT INTO brands (brand_name, est_year, country, CEO)
-    VALUES (" . "\"$name\""  . "," . $estYear  . "," . "\"$country\"" . "," . "\"$ceo\"" . ")";
+    $sql = "INSERT INTO series (series_name, description, brand_name)
+    VALUES (" . "\"$series_name\""  . "," . "\"$description\""  . "," . "\"$brand\"" . ")";
     echo $sql;
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
