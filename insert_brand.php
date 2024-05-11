@@ -16,11 +16,7 @@ $ceo = $_POST["ceo"];
     $dbname = "S224DB_juliansp";
 
     // Create connection
-<<<<<<< HEAD
-    $conn = new mysqli_connect($servername, $username, $password, $dbname);
-=======
     $conn = mysqli_connect($servername, $username, $password, $dbname);
->>>>>>> old_approach
     // Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
