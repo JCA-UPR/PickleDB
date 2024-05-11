@@ -118,6 +118,7 @@ th {
 }
 td {
     background-color: hsl(21, 20%, 35%); /* Light brown body */
+    color:#ffffff
 }
 /* ... (previous CSS code) ... */
 
