@@ -10,7 +10,7 @@
 <body>
     <div>
     <div>
-<form>
+
     <form action="select.php" method="post">
     <label for="query">SELECT:</label>
     <input type="text" id="query" name="query"><br><br>

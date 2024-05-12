@@ -1,4 +1,5 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $servername = "localhost:3306";
 $username = "juliansp";
 $password = "julian012803";
@@ -16,14 +17,19 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   // output data of each row
-  while($row = mysqli_fetch_assoc($result)) {
-    foreach ($row as $value){
-        echo $value . "<br>";
+  while ($row = mysqli_fetch_assoc($result)) {
+    // Loop through each row
+    foreach ($row as $key => $value) {
+        // Print attribute name and value
+        echo $key . ": " . $value . "<br>";
     }
-  }
+    echo "<br>"; // Add a line break after each row
+}
+  echo "</table>";
 } else {
   echo "0 results";
 }
 
 mysqli_close($conn);
+}
 ?>
