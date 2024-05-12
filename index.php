@@ -359,11 +359,11 @@
             <label for="ducpr">DUCPR:</label>
             <input type="number" id="ducpr" name="ducpr"><br><br>
 
-            <label for="Country">Country:</label>
-            <input type="text" id="Country" name="Country"><br><br>
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country"><br><br>
 
             <label for="main_paddle">Main Paddle:</label>
-            <input type="text" id="main_paddle" name="main_paddle"><br><br>
+            <input type="number" id="main_paddle" name="main_paddle"><br><br>
 
             <label for="league_id">League ID:</label>
             <input type="number" id="league_id" name="league_id"><br><br>
@@ -374,14 +374,14 @@
 
     <div id="response"></div>
     
-    <!-- Visualize League table -->
+    <!-- Visualize Player table -->
     <div>
-        <h2>League Table</h2>
+        <h2>Player Table</h2>
         <?php
-        $servername = "localhost:3306";
-        $username = "juliansp";
-        $password = "julian012803";
-        $dbname = "S224DB_juliansp";
+        $servername =   "localhost:3306";
+        $username =     "juliansp";
+        $password =     "julian012803";
+        $dbname =       "S224DB_juliansp";
         
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -390,15 +390,76 @@
             die("Connection failed: " . mysqli_connect_error());
         }
         
-        $sql = "SELECT * FROM league";
+        $sql = "SELECT * FROM players";
         $result = mysqli_query($conn, $sql);
         
         if (mysqli_num_rows($result) > 0) {
             // output data of each row
             echo "<table>";
-            echo "<tr><th>Name</th><th>Description</th><th>Country</th><th>Leader</th>";
+            echo "<tr><th>ID</th><th>Name</th><th>DCUPR</th><th>Country</th><th>Main Paddle</th><th>League ID</th>";
             while($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["description"] . "</td><td>" . $row["country"];
+                echo "<tr><td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["DUCPR"] . "</td><td>" . $row["country"] . "</td><td>" . $row["main_paddle"] . "</td><td>" . $row["league_id"] ;
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+        mysqli_close($conn);
+        ?>
+    </div>  
+
+    <!-- TEAMS -->
+
+    <div>
+        <h2>Enter Team Information</h2>
+        <form id="teamForm" action="insert_team.php" method="post">
+
+            <label for="tscore">Total Score:</label>
+            <input type="number" id="tscore" name="tscore"><br><br>
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description"><br><br>
+
+            <label for="league_id">League ID:</label>
+            <input type="number" id="league_id" name="league_id"><br><br>
+
+            <label for="team_leader_id">Team Leader ID:</label>
+            <input type="number" id="team_leader_id" name="team_leader_id"><br><br>
+
+            <label for="tname">Name:</label>
+            <input type="text" id="tname" name="tname"><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="response"></div>
+    
+    <!-- Visualize Team table -->
+    <div>
+        <h2>Team Table</h2>
+        <?php
+        $servername =   "localhost:3306";
+        $username =     "juliansp";
+        $password =     "julian012803";
+        $dbname =       "S224DB_juliansp";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        
+        $sql = "SELECT * FROM team";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            echo "<table>";
+            echo "<tr><th>ID</th><th>Total Score</th><th>Description</th><th>League ID</th><th>Team Leader ID</th><th>Team Name</th>";
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "<tr><td>" . $row["id"] . "</td><td>" . $row["total_score"] . "</td><td>" . $row["description"] . "</td><td>" . $row["league_id"] . "</td><td>" . $row["team_leader_id"] . "</td><td>" . $row["team_name"];
             }
             echo "</table>";
         } else {
