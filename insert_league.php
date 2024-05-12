@@ -4,9 +4,9 @@ ini_set('display_errors', 1);
 
 // Get form data
 $name = $_POST["name"];
-$estYear = $_POST['est_date'];
-$country = $_POST["based_country"];
-$ceo = $_POST["ceo"];
+$Description = $_POST['Description'];
+$country = $_POST["country"];
+$leader = $_POST["leader"];
 
 
     // Connect to the SQLite database
@@ -21,11 +21,14 @@ $ceo = $_POST["ceo"];
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
       }
+      
+
+
     // Prepare SQL statement to insert data into brands table
 
 
-    $sql = "INSERT INTO brands (brand_name, est_year, country, CEO)
-    VALUES (" . "\"$name\""  . "," . $estYear  . "," . "\"$country\"" . "," . "\"$ceo\"" . ")";
+    $sql = "INSERT INTO league (name, description, country, leader)
+    VALUES (" . "\"$name\""  . "," . $Description  . "," . "\"$country\"" . "," . "\"$leader\"" . ")";
     echo $sql;
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";

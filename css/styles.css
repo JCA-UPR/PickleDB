@@ -113,11 +113,12 @@ th, td {
     text-align: left;
 }
 th {
-    background-color: #8D6E63; /* Dark brown header */
-    color: white; /* White text */
+    background-color: #32201a; /* Dark brown header */
+    color: #ffffff; /* White text */
 }
 td {
-    background-color: #EFEBE9; /* Light brown body */
+    background-color: hsl(21, 20%, 35%); /* Light brown body */
+    color:#ffffff
 }
 /* ... (previous CSS code) ... */
 
