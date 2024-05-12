@@ -4,8 +4,8 @@ ini_set('display_errors', 1);
 
 // Get form data
 $name = $_POST["name"];
-$estYear = $_POST['estYear'];
-$country = $_POST["country"];
+$estYear = $_POST['est_date'];
+$country = $_POST["based_country"];
 $ceo = $_POST["ceo"];
 
 
@@ -21,9 +21,6 @@ $ceo = $_POST["ceo"];
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
       }
-      
-
-
     // Prepare SQL statement to insert data into brands table
 
 
