@@ -10,6 +10,13 @@
 <body>
     <div>
     <div>
+
+    <form action="select.php" method="post">
+    <label for="query">SELECT:</label>
+    <input type="text" id="query" name="query"><br><br>
+    <input type="submit" value="Submit">
+</form>
+    
     <h2>Enter Brand Information</h2>
 
     <form action="insert_brand.php" method="post">
