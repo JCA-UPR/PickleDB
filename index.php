@@ -10,7 +10,13 @@
 <body>
     <div>
     <div>
-
+        <h2>Write an update query: </h2>
+    <form action="update_table.php" method="post">
+    <label for="update_query">UPDATE:</label>
+    <input type="text" id="update_query" name="update_query"><br><br>
+    <input type="submit" value="Submit">
+</form>
+        <h2>Write a select query: </h2>
     <form action="select.php" method="post">
     <label for="query">SELECT:</label>
     <input type="text" id="query" name="query"><br><br>
