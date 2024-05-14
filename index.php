@@ -9,6 +9,7 @@
 </head>
 <body>
     <div>
+        <h1> Pickleball database: </h1>
     <div>
         <h2>Write an update query: </h2>
     <form action="update_table.php" method="post">
