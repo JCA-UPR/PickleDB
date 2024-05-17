@@ -9,11 +9,7 @@ $brand = $_POST["brand_name"];
 
 
 
-    // Connect to the SQLite database
-    $servername = "localhost:3306";
-    $username = "juliansp";
-    $password = "julian012803";
-    $dbname = "S224DB_juliansp";
+include "credentials.php";
 
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);

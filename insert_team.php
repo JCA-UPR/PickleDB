@@ -6,11 +6,7 @@ $league_id = $_POST["league_id"];
 $team_leader_id = $_POST["team_leader_id"];
 $tname = $_POST["tname"];
 
-// Connect to the database
-$servername = "localhost:3306";
-$username = "juliansp";
-$password = "julian012803";
-$dbname = "S224DB_juliansp";
+include "credentials.php";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
